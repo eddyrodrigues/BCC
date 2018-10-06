@@ -5,15 +5,24 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
+%% statistics example from https://github.com/claudiosa/CCS/blob/master/prolog/sol_aprovada_prof_matheus_rambo_da_rosa_resolucao_de_ano_novo.pl
+%% all different equal is the same thing
+
 main :-
-	amigas([FR1, FR1, FR1, FR1, FR1]),
-	format("\n Menina 1= ~w", FR1),
-	format("\n Menina 2= ~w", FR2),
-	format("\n Menina 3= ~w", FR3),
-	format("\n Menina 4= ~w", FR4),
-	format("\n Menina 5= ~w", FR5), fail.
-  
-  
+	statistics(cputime, T0),
+	amigas([Friend1, Friend2, Friend3, Friend4, Friend5]),
+	format("\n Friend 1: ~w", Friend1),
+	format("\n Friend 2: ~w", Friend2),
+	format("\n Friend 3: ~w", Friend3),
+	format("\n Friend 4: ~w", Friend4),
+	format("\n Friend 5: ~w", Friend5), 
+	statistics(cputime, T1),
+	TEMPO is T1 - T0,
+	write("\n time(approx.):"),
+	write(TEMPO), fail.
+
+%main :- nl, write('UMA UNICA RESPOSTA e pronto!!!!!!!!!!!!!!').
+
 amigas([(N1, M1, MA1, A1, L1, S1),
 		(N2, M2, MA2, A2, L2, S2),
 		(N3, M3, MA3, A3, L3, S3),
@@ -305,5 +314,6 @@ alldifferent([]).
 alldifferent([H|T]) :-
 	not(member(H,T)),
 alldifferent(T).
+
 
 
